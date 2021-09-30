@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
 const express = require('express');
-const Plant = require('./models/plant'); 
+const Plant = require('./models/light'); 
 const User = require('./models/user'); 
 
-mongoose.connect("mongodb+srv://mcmillanr:deakin@cluster0.kw5ly.mongodb.net/sit209", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://mcmillanr:deakin@sit314.nhrog.mongodb.net/sit314", { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 const port = process.env.PORT || 5000;
 
 app.use(express.static('public'));
@@ -26,102 +25,30 @@ app.listen(port, () =>
     console.log(`listening on port ${port}`);
 });
 
-/**
-* @api {get} /docs API Docs
-* @apiGroup Docs
-* @apiSuccessExample {object} Success-Response:
-* '/generated-docs/index.html'
-* @apiErrorExample {string} Error-Response:
-* null
-*/
 
 app.get('/docs', (req, res) => 
 {
     res.sendFile(`${__dirname}/public/generated-docs/index.html`);
 });
 
-/**
-* @api {get} /api/test Test API
-* @apiGroup Test
-* @apiSuccessExample {string} Success-Response:
-* 'The API is working!'
-* @apiErrorExample {string} Error-Response:
-* null
-*/ 
 
 app.get('/api/test', (req, res) => 
 {
     res.send('The API is working!');
 });
 
-/**
-* @api {get} /api/users/:user/Plants All Plants in array from user
-* @apiGroup Plants
-* @apiSuccessExample {json} Success-Response:
-* [
-* {
-* "_id":"5f55a18838d2d48608b36acc",
-* "id":0,
-* "type":6,
-* "name":"Basil",
-* "user":"Floor_1",
-* "temp":"48",
-* "light":"6839",
-* "humidity":"84",
-* "moisture":"72"
-* }
-* ]
-* @apiErrorExample {json} Error-Response:
-* {
-* "User does not exist"
-* }
-*/
-
-app.get('/api/users/:user/plants', (req, res) => 
+app.get('/api/users/:user/lights', (req, res) => 
 {
     const { user } = req.params;
-    Plant.find({ "user": user }, (err, plants) => 
+    Light.find({ "user": user }, (err, lights) => 
     {
-        return err ? res.send(err): res.send(plants);
+        return err ? res.send(err): res.send(lights);
     });
 });
 
-/**
-* @api {get} /api/Plants All Plants in array from plants
-* @apiGroup Plants
-* @apiSuccessExample {json} Success-Response:
-* [
-* {
-* "_id":"5f55a18838d2d48608b36ad0",
-* "id":3,
-* "type":6,
-* "name":"Basil",
-* "user":"Floor_2",
-* "temp":"-6",
-* "light":"4846",
-* "humidity":"17",
-* "moisture":"62"
-* },
-* {
-* "_id":"5f55a18838d2d48608b36acd",
-* "id":2,
-* "type":2,
-* "name":"Suculent",
-* "user":"Floor_3",
-* "temp":"43",
-* "light":"6274",
-* "humidity":"7",
-* "moisture":"10"
-* }
-* ]
-* @apiErrorExample {json} Error-Response:
-* [
-* ]
-*/
-
-app.get('/api/plants', (req, res) => 
+app.get('/api/lights', (req, res) => 
 {
-    Plant.find({}, (err, plants) => 
+    Light.find({}, (err, lights) => 
     {
         if (err == true) 
         {
@@ -129,47 +56,36 @@ app.get('/api/plants', (req, res) =>
         }
         else 
         {
-            return res.send(plants);
+            return res.send(lights);
         }
     });
 });
 
-app.get('/api/plants/:plantId/plant-history', (req, res) => 
+app.get('/api/lights/:lightId/light-history', (req, res) => 
 {
-    const { plantId } = req.params;
-    Plant.findOne({"_id": plantId }, (err, plants) => 
+    const { lightId } = req.params;
+    Light.findOne({"_id": lightId }, (err, lights) => 
     {
-        const { plantData } = plants;
-        return err ? res.send(err): res.send(plantData);
+        const { lightData } = lights;
+        return err ? res.send(err): res.send(lightData);
     });
 });
 
-/**
-* @api {post} /api/Plants Add Plant
-* @apiGroup Plants
-* @apiSuccessExample {string} Success-Response:
-* 'successfully added Plant and data'
-* @apiErrorExample {string} Error-Response:
-* 'Syntax error'
-*/
-
-app.post('/api/plants', (req, res) => 
+app.post('/api/lights', (req, res) => 
 {
-    const { type, name, user, plantData } = req.body;
-    const newplant = new Plant(
+    const { location, user, lightData } = req.body;
+    const newlight = new Light(
     {
-        type,
-        name,
+        location,
         user,
-        plantData
-        // temp,
+        lightData
+        // volts,
         // light,
-        // humidity,
-        // moisture
+        // status,
     });
-    newplant.save(err => 
+    newlight.save(err => 
     {
-        return err? res.send(err): res.send('successfully added Plant and data');
+        return err? res.send(err): res.send('successfully added Light and data');
     });
 });
 

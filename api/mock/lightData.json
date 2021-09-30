@@ -1,0 +1,64 @@
+{
+  "lights": [
+    {
+      "id": 0,
+      "location": "Office 1",
+      "user": "Floor 1",
+      "lightData": [
+        {
+          "Volts": "21.6V",
+          "light": "20000Lux",
+          "Status": "On"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "location": "Office 1",
+      "user": "Floor 1",
+      "lightData": [
+        {
+          "Volts": "21.6V",
+          "light": "20000Lux",
+          "Status": "On"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "location": "Office 2",
+      "user": "Floor 1",
+      "lightData": [
+        {
+          "Volts": "21.6V",
+          "light": "20000Lux",
+          "Status": "On"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "location": "Office 2",
+      "user": "Floor 2",
+      "lightData": [
+        {
+          "Volts": "21.6V",
+          "light": "20000Lux",
+          "Status": "On"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "location": "Office 3",
+      "user": "Floor 2",
+      "lightData": [
+        {
+          "Volts": "21.6V",
+          "light": "20000Lux",
+          "Status": "On"
+        }
+      ]
+    }
+  ]
+}

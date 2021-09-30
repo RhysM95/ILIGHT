@@ -1,113 +1,82 @@
 if(currentUser == "admin")
 {
-    //const plantID = [];
-    $.get(`${API_URL}/plants`).then(response =>
+    $.get(`${API_URL}/lights`).then(response =>
     {
-        const plantID = [];
-        const tempArray  = [];
+        const lightID = [];
+        const voltArray  = [];
         const lightArray = [];
-        const humArray = [];
-        const moistureArray = [];
         var labelArray = [];
         var increment = 0;      //900000
 
         for (var i = 0; i < 8; i++){
             labelArray.push(formatted_time(new Date(Date.now() - increment)));
             increment += 900000;
-            //console.log("H");
         }
-        //console.log (labelArray);
 
-        response.forEach(plant =>
+        response.forEach(light =>
         {
             
-            if (plantID.indexOf(plant.id, 0) == -1) plantID.push(plant.id)
-            const ptempArray  = [0,0,0,0,0,0,0,0];
+            if (lightID.indexOf(light.id, 0) == -1) lightID.push(light.id)
+            const pvoltArray  = [0,0,0,0,0,0,0,0];
             const plightArray = [0,0,0,0,0,0,0,0];
-            const phumArray = [0,0,0,0,0,0,0,0];
-            const pmoistureArray = [0,0,0,0,0,0,0,0];
             const countArray = [0,0,0,0,0,0,0,0];
-            const sumTempArray = [0,0,0,0,0,0,0,0];
+            const sumVoltArray = [0,0,0,0,0,0,0,0];
             const sumLightArray = [0,0,0,0,0,0,0,0];
-            const sumHumArray = [0,0,0,0,0,0,0,0];
-            const sumMoistureArray = [0,0,0,0,0,0,0,0];
 
-
-            for (var i = 0; i < plant.plantData.length; i++){
-                if(plant.plantData[i].time > (Date.now() - 900000)){ 
+            for (var i = 0; i < light.lightData.length; i++){
+                if(light.lightData[i].time > (Date.now() - 900000)){ 
                     //21600000 milli in 6 hours
                     //900000 milli in 15min
 
                     countArray[0]++;
-                    sumTempArray[0]+= plant.plantData[i].temp;
-                    sumLightArray[0]+= plant.plantData[i].light;
-                    sumHumArray[0]+= plant.plantData[i].humidity;
-                    sumMoistureArray[0]+= plant.plantData[i].moisture;
+                    sumVoltArray[0]+= light.lightData[i].temp;
+                    sumLightArray[0]+= light.lightData[i].light;
                    
-                }else if (plant.plantData[i].time > (Date.now() - 1800000)){
+                }else if (light.lightData[i].time > (Date.now() - 1800000)){
                     countArray[1]++;
-                    sumTempArray[1]+= plant.plantData[i].temp;
-                    sumLightArray[1]+= plant.plantData[i].light;
-                    sumHumArray[1]+= plant.plantData[i].humidity;
-                    sumMoistureArray[1]+= plant.plantData[i].moisture;
-                } else if (plant.plantData[i].time > (Date.now() - 2400000)){
+                    sumVoltArray[1]+= light.lightData[i].temp;
+                    sumLightArray[1]+= light.lightData[i].light;
+
+                } else if (light.lightData[i].time > (Date.now() - 2400000)){
                     countArray[2]++;
-                    sumTempArray[2]+= plant.plantData[i].temp;
-                    sumLightArray[2]+= plant.plantData[i].light;
-                    sumHumArray[2]+= plant.plantData[i].humidity;
-                    sumMoistureArray[2]+= plant.plantData[i].moisture;
-                } else if (plant.plantData[i].time > (Date.now() - 3000000)){
+                    sumVoltArray[2]+= light.lightData[i].temp;
+                    sumLightArray[2]+= light.lightData[i].light;
+                } else if (light.lightData[i].time > (Date.now() - 3000000)){
                     countArray[3]++;
-                    sumTempArray[3]+= plant.plantData[i].temp;
-                    sumLightArray[3]+= plant.plantData[i].light;
-                    sumHumArray[3]+= plant.plantData[i].humidity;
-                    sumMoistureArray[3]+= plant.plantData[i].moisture;
-                } else if (plant.plantData[i].time > (Date.now() - 3600000)){
+                    sumVoltArray[3]+= light.lightData[i].temp;
+                    sumLightArray[3]+= light.lightData[i].light;
+                } else if (light.lightData[i].time > (Date.now() - 3600000)){
                     countArray[4]++;
-                    sumTempArray[4]+= plant.plantData[i].temp;
-                    sumLightArray[4]+= plant.plantData[i].light;
-                    sumHumArray[4]+= plant.plantData[i].humidity;
-                    sumMoistureArray[4]+= plant.plantData[i].moisture;
-                } else if (plant.plantData[i].time > (Date.now() - 4200000)){
+                    sumVoltArray[4]+= light.lightData[i].temp;
+                    sumLightArray[4]+= light.lightData[i].light;
+                } else if (light.lightData[i].time > (Date.now() - 4200000)){
                     countArray[5]++;
-                    sumTempArray[5]+= plant.plantData[i].temp;
-                    sumLightArray[5]+= plant.plantData[i].light;
-                    sumHumArray[5]+= plant.plantData[i].humidity;
-                    sumMoistureArray[5]+= plant.plantData[i].moisture;
-                } else if (plant.plantData[i].time > (Date.now() - 4800000)){
+                    sumVoltArray[5]+= light.lightData[i].temp;
+                    sumLightArray[5]+= light.lightData[i].light;
+                } else if (light.lightData[i].time > (Date.now() - 4800000)){
                     countArray[6]++;
-                    sumTempArray[6]+= plant.plantData[i].temp;
-                    sumLightArray[6]+= plant.plantData[i].light;
-                    sumHumArray[6]+= plant.plantData[i].humidity;
-                    sumMoistureArray[6]+= plant.plantData[i].moisture;
-                } else if (plant.plantData[i].time > (Date.now() - 5400000)){
+                    sumVoltArray[6]+= light.lightData[i].temp;
+                    sumLightArray[6]+= light.lightData[i].light;
+                } else if (light.lightData[i].time > (Date.now() - 5400000)){
                     countArray[7]++;
-                    sumTempArray[7]+= plant.plantData[i].temp;
-                    sumLightArray[7]+= plant.plantData[i].light;
-                    sumHumArray[7]+= plant.plantData[i].humidity;
-                    sumMoistureArray[7]+= plant.plantData[i].moisture;
+                    sumVoltArray[7]+= light.lightData[i].temp;
+                    sumLightArray[7]+= light.lightData[i].light;
                 }
                 console.log(countArray);
-                //console.log(sumTempArray);
 
                 for (var j = 0; j < countArray.length; j++){
-                    ptempArray[j] = sumTempArray[j]/countArray[j];
+                    pvoltArray[j] = sumVoltArray[j]/countArray[j];
                     plightArray[j] = sumLightArray[j]/countArray[j];
-                    phumArray[j] = sumHumArray[j]/countArray[j];
-                    pmoistureArray[j] = sumMoistureArray[j]/countArray[j];
                 }
-                //console.log(ptempArray);
 
-                tempArray.push(ptempArray);
+                voltArray.push(pvoltArray);
                 lightArray.push(plightArray);
-                humArray.push(phumArray);
-                moistureArray.push(pmoistureArray);
             }
         });
         
         new Chartist.Line('#chart1', {
             labels: labelArray,
-            series: tempArray
+            series: voltArray
         }, {
             low: -40,
             showArea: false
@@ -166,69 +135,6 @@ else
 function formatted_time(d)
 {
    return (d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
-}
-
-function UpdateValue(){
-    var temp=test.value;
-    if (temp=="Melbourne"){
-      hideAll();
-      showCity("melbWeather");
-    } 
-    else if (temp=="Adelaide"){
-      hideAll();
-      showCity("adelWeather");
-    }
-    else if (temp=="Sydney"){
-      hideAll();
-      showCity("sydWeather");
-    }
-    else if (temp=="Hobart"){
-      hideAll();
-      showCity("hobWeather");
-    }
-    else if (temp=="Darwin"){
-      hideAll();
-      showCity("darwWeather");
-    }
-    else if (temp=="Perth"){
-      hideAll();
-      showCity("perWeather");
-    }
-    else if (temp=="Canberra"){
-      hideAll();
-      showCity("canbWeather");
-    }
-    else if (temp=="Brisbane"){
-      hideAll();
-      showCity("brisWeather");
-    }
-       
-
-    else hideAll();
-
-    function hideAll(){
-      document.getElementById("melbWeather").style.visibility = "hidden";
-      document.getElementById("melbWeather").style.height = "0px";
-      document.getElementById("sydWeather").style.visibility = "hidden";
-      document.getElementById("sydWeather").style.height = "0px";
-      document.getElementById("adelWeather").style.visibility = "hidden";
-      document.getElementById("adelWeather").style.height = "0px";
-      document.getElementById("hobWeather").style.visibility = "hidden";
-      document.getElementById("hobWeather").style.height = "0px";
-      document.getElementById("brisWeather").style.visibility = "hidden";
-      document.getElementById("brisWeather").style.height = "0px";
-      document.getElementById("perWeather").style.visibility = "hidden";
-      document.getElementById("perWeather").style.height = "0px";
-      document.getElementById("darwWeather").style.visibility = "hidden";
-      document.getElementById("darwWeather").style.height = "0px";
-      document.getElementById("canbWeather").style.visibility = "hidden";
-      document.getElementById("canbWeather").style.height = "0px";
-    }
-    
-    function showCity(input){
-      document.getElementById(input).style.visibility = "visible";
-      document.getElementById(input).style.height = "200px";
-    }    
 }
 
 function addData(value){

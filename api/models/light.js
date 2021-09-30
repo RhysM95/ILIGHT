@@ -2,13 +2,10 @@ const mongoose = require('mongoose');
 module.exports = mongoose.model('Plant', new mongoose.Schema(
 {
     id: Number,
-    type: Number,
-    name: String,
+    location: String,
     user: String,
-    plantData: Array
-    // temp: String,
+    lightData: Array
+    // volt: String,
     // light: String,
-    // humidity: String,
-    // moisure: String,
-    // time: String
+    // status: String,
 }));

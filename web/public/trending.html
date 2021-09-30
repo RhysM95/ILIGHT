@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8" >
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>IPLANT</title>
-        <meta name="description" content="A 'how to' page for IPLANT navigation" >
-        <meta name="authors" content="R.McMillan, T.Gray, G.Bansal" >
+        <title>ILIGHT</title>
+        <meta name="description" content="A 'how to' page for ILIGHT navigation" >
+        <meta name="authors" content="R.McMillan" >
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="https://rawgit.com/gionkunz/chartist-js/master/dist/chartist.min.css">
         
@@ -30,11 +30,11 @@
         <div class="container" >
             <div class="row">
                 <div class="col-xs-4">
-                    <div style="width:500px;height:200px;border:1px solid #000;">Temperature
+                    <div style="width:500px;height:200px;border:1px solid #000;">Voltage
                     	<div class="ct-chart" id="chart1" style="height:90%;"></div>
                     </div>
                     <p></p>
-                    <div style="width:500px;height:200px;border:1px solid #000;">Humidity
+                    <div style="width:500px;height:200px;border:1px solid #000;">TBA
                     	<div class="ct-chart" id="chart2" style="height:90%;"></div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     <div class="ct-chart" id="chart3" style="height:90%;"></div>
                   </div>
                   <p></p>
-                  <div style="width:500px;height:200px;border:1px solid #000;">Soil Moisture
+                  <div style="width:500px;height:200px;border:1px solid #000;">TBA
                     <div class="ct-chart" id="chart4" style="height:90%;"></div>
                   </div>
                 </div>
@@ -54,30 +54,6 @@
             
         </div>
         <p></p>
-        <div>
-          <select class="browser-default custom-select" id="test">
-            <option selected value="hideEm">City</option>
-            <option value="Adelaide">Adelaide</option>
-            <option value="Canberra">Canberra</option>
-            <option value="Brisbane">Brisbane</option>
-            <option value="Darwin">Darwin</option>
-            <option value="Hobart">Hobart</option>
-            <option value="Melbourne">Melbourne</option>
-            <option value="Perth">Perth</option>
-            <option value="Sydney">Sydney</option>
-          </select>
-    
-          <button onClick="UpdateValue()">Update</button>
-          <a></a>
-          <a class="weatherwidget-io" href="https://forecast7.com/en/n37d81144d96/melbourne/" data-label_1="MELBOURNE" data-label_2="WEATHER" data-theme="original" style="visibility:hidden" id="melbWeather">MELBOURNE WEATHER</a>
-          <a class="weatherwidget-io" href="https://forecast7.com/en/n34d93138d60/adelaide/" data-label_1="ADELAIDE" data-label_2="WEATHER" data-theme="original" style="visibility:hidden" id="adelWeather">ADELAIDE WEATHER</a>
-          <a class="weatherwidget-io" href="https://forecast7.com/en/n33d87151d21/sydney/" data-label_1="SYDNEY" data-label_2="WEATHER" data-theme="original" style="visibility:hidden" id="sydWeather">SYDNEY WEATHER</a>
-          <a class="weatherwidget-io" href="https://forecast7.com/en/n42d88147d33/hobart/" data-label_1="HOBART" data-label_2="WEATHER" data-theme="original" style="visibility:hidden" id="hobWeather">HOBART WEATHER</a>
-          <a class="weatherwidget-io" href="https://forecast7.com/en/n12d46130d85/darwin/" data-label_1="DARWIN" data-label_2="WEATHER" data-theme="original" style="visibility:hidden" id="darwWeather">DARWIN WEATHER</a>
-          <a class="weatherwidget-io" href="https://forecast7.com/en/n31d95115d86/perth/" data-label_1="PERTH" data-label_2="WEATHER" data-theme="original" style="visibility:hidden" id="perWeather">PERTH WEATHER</a>
-          <a class="weatherwidget-io" href="https://forecast7.com/en/n35d31149d12/canberra/" data-label_1="CANBERRA" data-label_2="WEATHER" data-theme="original" style="visibility:hidden" id="canbWeather">CANBERRA WEATHER</a>
-          <a class="weatherwidget-io" href="https://forecast7.com/en/n27d47153d03/brisbane/" data-label_1="BRISBANE" data-label_2="WEATHER" data-theme="original" style="visibility:hidden" id="brisWeather">BRISBANE WEATHER</a>
-        </div>
         
         <div class="container">
             <div id="footer"></div>
@@ -91,8 +67,5 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="app.js"></script>
         <script src="trending.js"></script>
-        <script>
-          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-        </script>
     </body>
 </html>

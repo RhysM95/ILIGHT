@@ -8,26 +8,20 @@ const currentUser = localStorage.getItem('name');
 
 if(currentUser == "admin")
 {
-    $.get(`${API_URL}/plants`).then(response =>
+    $.get(`${API_URL}/lights`).then(response =>
     {
 
-        response.forEach(plant =>
+        response.forEach(light =>
         {
-            end = plant.plantData.length -1
-            // if ((plant.plantData[end].temp) >= 20)
-            // {
-            //     temp_al = plant.plantData[end].temp.fontcolor("red");
-            // }
-            // else (temp_al = plant.plantData[end].temp)
+            end = light.lightData.length -1
 
-            $('#plants tbody').append(`
+            $('#lights tbody').append(`
             <tr> 
-            <td>${plant.user}</td>
-            <td>${plant.name}</td>
-            <td>${plant.plantData[end].temp + '°'}</td>
-            <td>${plant.plantData[end].light + ' LUX'}</td>
-            <td>${plant.plantData[end].humidity + ' %RH'}</td>
-            <td>${plant.plantData[end].moisture + ' MU'}</td>
+            <td>${light.user}</td>
+            <td>${light.name}</td>
+            <td>${light.lightData[end].volts + 'V'}</td>
+            <td>${light.lightData[end].light + ' LUX'}</td>
+            <td>${light.lightData[end].status}</td>
             </tr>
             `);
         });
@@ -40,20 +34,19 @@ if(currentUser == "admin")
 
 else if (currentUser)
 {
-    $.get(`${API_URL}/users/${currentUser}/plants`).then(response => 
+    $.get(`${API_URL}/users/${currentUser}/lights`).then(response => 
     {
-        response.forEach((plant) => 
+        response.forEach((light) => 
         {
-            end = plant.plantData.length -1
+            end = light.lightData.length -1
 
-            $('#plants tbody').append(`
-            <tr data-plant-id=${plant._id}>
-            <td>${plant.user}</td>
-            <td>${plant.name}</td>
-            <td>${plant.plantData[end].temp + '°'}</td>
-            <td>${plant.plantData[end].light + ' LUX'}</td>
-            <td>${plant.plantData[end].humidity + ' %RH'}</td>
-            <td>${plant.plantData[end].moisture + ' MU'}</td>
+            $('#lights tbody').append(`
+            <tr data-light-id=${light._id}>
+            <td>${light.user}</td>
+            <td>${light.name}</td>
+            <td>${light.lightData[end].volts + 'V'}</td>
+            <td>${light.lightData[end].light + ' LUX'}</td>
+            <td>${light.lightData[end].status}</td>
             </tr>
             `);
         });
@@ -72,20 +65,20 @@ else
     }
 }
 
-$('#add-plant').on('click', () => 
+$('#add-light').on('click', () => 
 {
     const name = $('#name').val();
     const user = $('#user').val();
-    const plantData = [];
+    const lightData = [];
 
     const body = 
     {
         name,
         user,
-        plantData
+        lightData
     };
 
-    $.post(`${API_URL}/plants`, body).then(response => 
+    $.post(`${API_URL}/lights`, body).then(response => 
     {
         location.href = '/';
     }).catch(error => 
@@ -97,8 +90,8 @@ $('#add-plant').on('click', () =>
 $('#system-control').on('click', function()
 {
     const command = $('#command').val();
-    const plantID = $('#plantID').val();
-    $.post(`${MQTT_URL}/system-control`, { command, plantID });
+    const lightID = $('#lightID').val();
+    $.post(`${MQTT_URL}/system-control`, { command, lightID });
 });
 
 $('#register').on('click', () =>
@@ -137,7 +130,7 @@ $('#login').on('click', () =>
         {
             localStorage.setItem('name', username);
             localStorage.setItem('isAuthenticated', true);
-            location.href = '/plant-data';
+            location.href = '/light-data';
         } 
         else 
         {

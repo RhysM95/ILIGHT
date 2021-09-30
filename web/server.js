@@ -16,9 +16,9 @@ app.get('/', function (req, res)
     res.sendFile(`${base}/login.html`);
 });
 
-app.get('/register-plant', (req, res) => 
+app.get('/register-light', (req, res) => 
 {
-    res.sendFile(`${base}/register-plant.html`);
+    res.sendFile(`${base}/register-light.html`);
 });
 
 app.get('/system-control', (req, res) => 
@@ -46,9 +46,9 @@ app.get('/trending', (req, res) =>
     res.sendFile(`${base}/trending.html`);
 });
 
-app.get('/plant-data', (req, res) => 
+app.get('/light-data', (req, res) => 
 {
-    res.sendFile(`${base}/plant-data.html`);
+    res.sendFile(`${base}/light-data.html`);
 });
 
 app.get('/alarms', (req, res) => 

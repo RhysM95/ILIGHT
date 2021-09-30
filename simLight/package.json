@@ -1,15 +1,19 @@
 {
-  "name": "alarms",
+  "name": "simlight",
   "version": "1.0.0",
   "description": "",
-  "main": "alarms.js",
+  "main": "simLight.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon alarms.js"
+    "start": "nodemon simLight.js"
   },
   "author": "Rhys McMillan",
   "license": "ISC",
   "dependencies": {
+    "Math": "0.0.1-security",
+    "express": "^4.17.1",
+    "mathjs": "^7.2.0",
+    "mqtt": "^4.2.1",
     "nodemon": "^2.0.4"
   }
 }
