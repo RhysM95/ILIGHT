@@ -49,10 +49,9 @@ client.on('message', (topic, message) =>
         }
 
         const { lightData } = light;
-        const {volts, light, status, time } = data.data;
-        lightData.push({ volts, light, status, time });
-        light.lightData = lightData;
-        
+        const {volts, lux, status, time } = data.data;
+        lightData.push({ volts, lux, status, time });
+        console.log(light.lightData.status);
         light.save(err => 
         {
             if (err) 

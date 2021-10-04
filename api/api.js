@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const express = require('express');
-const Plant = require('./models/light'); 
+const Light = require('./models/light'); 
 const User = require('./models/user'); 
 
 mongoose.connect("mongodb+srv://mcmillanr:deakin@sit314.nhrog.mongodb.net/sit314", { useNewUrlParser: true, useUnifiedTopology: true });

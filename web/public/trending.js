@@ -29,38 +29,38 @@ if(currentUser == "admin")
                     //900000 milli in 15min
 
                     countArray[0]++;
-                    sumVoltArray[0]+= light.lightData[i].temp;
-                    sumLightArray[0]+= light.lightData[i].light;
+                    sumVoltArray[0]+= light.lightData[i].volts;
+                    sumLightArray[0]+= light.lightData[i].lux;
                    
                 }else if (light.lightData[i].time > (Date.now() - 1800000)){
                     countArray[1]++;
-                    sumVoltArray[1]+= light.lightData[i].temp;
-                    sumLightArray[1]+= light.lightData[i].light;
+                    sumVoltArray[1]+= light.lightData[i].volts;
+                    sumLightArray[1]+= light.lightData[i].lux;
 
                 } else if (light.lightData[i].time > (Date.now() - 2400000)){
                     countArray[2]++;
-                    sumVoltArray[2]+= light.lightData[i].temp;
-                    sumLightArray[2]+= light.lightData[i].light;
+                    sumVoltArray[2]+= light.lightData[i].volts;
+                    sumLightArray[2]+= light.lightData[i].lux;
                 } else if (light.lightData[i].time > (Date.now() - 3000000)){
                     countArray[3]++;
-                    sumVoltArray[3]+= light.lightData[i].temp;
-                    sumLightArray[3]+= light.lightData[i].light;
+                    sumVoltArray[3]+= light.lightData[i].volts;
+                    sumLightArray[3]+= light.lightData[i].lux;
                 } else if (light.lightData[i].time > (Date.now() - 3600000)){
                     countArray[4]++;
-                    sumVoltArray[4]+= light.lightData[i].temp;
-                    sumLightArray[4]+= light.lightData[i].light;
+                    sumVoltArray[4]+= light.lightData[i].volts;
+                    sumLightArray[4]+= light.lightData[i].lux;
                 } else if (light.lightData[i].time > (Date.now() - 4200000)){
                     countArray[5]++;
-                    sumVoltArray[5]+= light.lightData[i].temp;
-                    sumLightArray[5]+= light.lightData[i].light;
+                    sumVoltArray[5]+= light.lightData[i].volts;
+                    sumLightArray[5]+= light.lightData[i].lux;
                 } else if (light.lightData[i].time > (Date.now() - 4800000)){
                     countArray[6]++;
-                    sumVoltArray[6]+= light.lightData[i].temp;
-                    sumLightArray[6]+= light.lightData[i].light;
+                    sumVoltArray[6]+= light.lightData[i].volts;
+                    sumLightArray[6]+= light.lightData[i].lux;
                 } else if (light.lightData[i].time > (Date.now() - 5400000)){
                     countArray[7]++;
-                    sumVoltArray[7]+= light.lightData[i].temp;
-                    sumLightArray[7]+= light.lightData[i].light;
+                    sumVoltArray[7]+= light.lightData[i].volts;
+                    sumLightArray[7]+= light.lightData[i].lux;
                 }
                 console.log(countArray);
 
@@ -78,11 +78,19 @@ if(currentUser == "admin")
             labels: labelArray,
             series: voltArray
         }, {
-            low: -40,
+            low: 10,
             showArea: false
         });
 
-        new Chartist.Line('#chart2', {
+        // new Chartist.Line('#chart2', {
+        //     labels: labelArray,
+        //     series: lightArray
+        // }, {
+        //     low: 0,
+        //     showArea: false
+        // });
+
+        new Chartist.Line('#chart3', {
             labels: labelArray,
             series: lightArray
         }, {
@@ -90,21 +98,13 @@ if(currentUser == "admin")
             showArea: false
         });
 
-        new Chartist.Line('#chart3', {
-            labels: labelArray,
-            series: humArray
-        }, {
-            low: 0,
-            showArea: false
-        });
-
-        new Chartist.Line('#chart4', {
-            labels: labelArray,
-            series: moistureArray
-        }, {
-            low: 0,
-            showArea: false
-        });
+        // new Chartist.Line('#chart4', {
+        //     labels: labelArray,
+        //     series: moistureArray
+        // }, {
+        //     low: 0,
+        //     showArea: false
+        // });
     }).catch(error =>
     {
         console.error(`Error: ${error}`);

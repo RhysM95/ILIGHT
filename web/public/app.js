@@ -18,10 +18,11 @@ if(currentUser == "admin")
             $('#lights tbody').append(`
             <tr> 
             <td>${light.user}</td>
-            <td>${light.name}</td>
+            <td>${light.location}</td>
             <td>${light.lightData[end].volts + 'V'}</td>
-            <td>${light.lightData[end].light + ' LUX'}</td>
+            <td>${light.lightData[end].lux + ' LUX'}</td>
             <td>${light.lightData[end].status}</td>
+            <td> </td>
             </tr>
             `);
         });
@@ -30,6 +31,28 @@ if(currentUser == "admin")
     {
         console.error(`Error: ${error}`);
     });
+
+    $.get(`${API_URL}/lights`).then(response =>
+        {
+    
+            response.forEach(light =>
+            {
+                end = light.lightData.length -1
+    
+                $('#light-control tbody').append(`
+                <tr> 
+                <td>${light.user}</td>
+                <td>${light.location}</td>
+                <td>${light.lightData[end].status}</td>
+                <td> </td>
+                </tr>
+                `);
+            });
+                   
+        }).catch(error =>
+        {
+            console.error(`Error: ${error}`);
+        });
 }
 
 else if (currentUser)
@@ -43,9 +66,9 @@ else if (currentUser)
             $('#lights tbody').append(`
             <tr data-light-id=${light._id}>
             <td>${light.user}</td>
-            <td>${light.name}</td>
+            <td>${light.location}</td>
             <td>${light.lightData[end].volts + 'V'}</td>
-            <td>${light.lightData[end].light + ' LUX'}</td>
+            <td>${light.lightData[end].lux + ' LUX'}</td>
             <td>${light.lightData[end].status}</td>
             </tr>
             `);
@@ -55,6 +78,27 @@ else if (currentUser)
     {
         console.error(`Error: ${error}`);
     });
+
+    $.get(`${API_URL}/users/${currentUser}/lights`).then(response => 
+        {
+            response.forEach((light) => 
+            {
+                end = light.lightData.length -1
+    
+                $('#light-control tbody').append(`
+                <tr data-light-id=${light._id}>
+                <td>${light.user}</td>
+                <td>${light.location}</td>
+                <td>${light.lightData[end].status}</td>
+                <td>${light.lightData[end].status}</td>
+                </tr>
+                `);
+            });
+            
+        }).catch(error => 
+        {
+            console.error(`Error: ${error}`);
+        });
 }
 else 
 {
@@ -91,7 +135,10 @@ $('#system-control').on('click', function()
 {
     const command = $('#command').val();
     const lightID = $('#lightID').val();
-    $.post(`${MQTT_URL}/system-control`, { command, lightID });
+    const on_status = $('#on-status').value();
+    const off_status = $('#off-status').value();
+    
+    $.post(`${MQTT_URL}/system-control`, { command, lightID, on_status, off_status });
 });
 
 $('#register').on('click', () =>

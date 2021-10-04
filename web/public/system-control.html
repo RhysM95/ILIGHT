@@ -25,13 +25,13 @@
                 </div>
                 <br>
                 <br>
-                <h2 for="command">Operate Water Valve</h2>
+                <h2 for="command">Remote Operation of Lights</h2>
                 <br>
-                <div id="valve-mode">Currently in Auto Control</div>
+                <div id="light-mode">Currently in Auto Control</div>
                 <br>
                 <div class="btn-group">
-                    <p><button class ="btn btn-success" name = "open" onclick="valveFunction(0)" >Open Valve </button></p>
-                    <p><button class ="btn btn-danger" name = "close" onclick="valveFunction(1)" >Close Valve </button></p>
+                    <p><button class ="btn btn-success" name = "on" id = "on-status" onclick="lightFunction(0)" >Light On </button></p>
+                    <p><button class ="btn btn-danger" name = "off" id = "off-status" onclick="lightFunction(1)" >Light Off </button></p>
                 </div>
                 <br>
             <div id="footer"></div>
@@ -44,37 +44,37 @@
               if(mode == 0)
               {
                 status.innerHTML = "Currently in Auto Control" 
-                document.getElementsByName("open")[0].disabled = true;
+                document.getElementsByName("on")[0].disabled = true;
                 document.getElementsByName("auto")[0].disabled = true;
-                document.getElementsByName("close")[0].disabled = true; 
+                document.getElementsByName("off")[0].disabled = true; 
                 document.getElementsByName("manual")[0].disabled = false;
 
               }
               else if(mode == 1)
               {
                 status.innerHTML = "Currently in Manual Control"
-                document.getElementsByName("open")[0].disabled = false;
-                document.getElementsByName("close")[0].disabled = false;
+                document.getElementsByName("on")[0].disabled = false;
+                document.getElementsByName("off")[0].disabled = false;
                 document.getElementsByName("auto")[0].disabled = false;
                 document.getElementsByName("manual")[0].disabled = true;
 
               }
             }
-            function valveFunction(mode) 
+            function lightFunction(mode) 
             {
-              var status = document.getElementById("valve-mode");
+              var status = document.getElementById("light-mode");
 
               if(mode == 0)
               {
-                status.innerHTML = "Valve Currently Open";  
-                document.getElementsByName("open")[0].disabled = true;
-                document.getElementsByName("close")[0].disabled = false;
+                status.innerHTML = "Lights Currently On";  
+                document.getElementsByName("on")[0].disabled = true;
+                document.getElementsByName("off")[0].disabled = false;
               }
               else if(mode == 1)
               {
-                status.innerHTML = "Valve Currently Closed";
-                document.getElementsByName("open")[0].disabled = false;
-                document.getElementsByName("close")[0].disabled = true;
+                status.innerHTML = "Lights Currently Off";
+                document.getElementsByName("on")[0].disabled = false;
+                document.getElementsByName("off")[0].disabled = true;
               }
             }
         </script>

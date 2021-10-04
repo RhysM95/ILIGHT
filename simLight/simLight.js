@@ -7,7 +7,7 @@ const Math = require('mathjs');
 
 const client = mqtt.connect("mqtt://broker.hivemq.com:1883");
 
-var lightData = {id: 0, data:{volts:0, light:0, status:0, time:0}};
+var lightData = {id: 0, data:{volts:0, lux:0, status:0, time:0}};
 
 var rl = readline.createInterface({
   input: process.stdin,
@@ -25,12 +25,12 @@ rl.question(">>What is the Light ID?  ", function(answer) {
 });
 
 function sendData() {
-	const topic = `/ILIGHT/${lighttID}/`;
+	const topic = `/ILIGHT/${lightID}/`;
 
 	lightData.data.time = Date.now();
-	lightData.data.volts = randomSensorValue(12.1, 15.5);
-	lightData.data.light = randomSensorValue(0, 2000);
-	lightData.data.status = randomSensorValue(0, 1);
+	lightData.data.volts = randomSensorValue(12, 16, 1);
+	lightData.data.lux = randomSensorValue(0, 2000, 0);
+	lightData.data.status = statusValue(0, 2, 0)
 	console.log("Sending to topic: " + topic);
 	console.log("Data: " + JSON.stringify(lightData));
 	client.publish(topic, JSON.stringify(lightData), () => {
@@ -44,6 +44,16 @@ function connectMQTT(){
 	});
 }
 
-function randomSensorValue(low, hi){
-	return Math.floor(Math.random(low, hi));
+function randomSensorValue(min, max, decimalPlaces) {  
+    var rand = Math.random()*(max-min) + min;
+    var power = Math.pow(10, decimalPlaces);
+    return Math.floor(rand*power) / power;
+}
+
+function statusValue(min, max, decimalPlaces) {  
+    var rand = Math.random()*(max-min) + min;
+    var power = Math.pow(10, decimalPlaces);
+    var temp =  Math.floor(rand*power) / power;
+	if (temp == 1) return "ON";
+	else return "OFF";
 }

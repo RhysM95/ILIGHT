@@ -7,7 +7,7 @@
       "lightData": [
         {
           "Volts": "21.6V",
-          "light": "20000Lux",
+          "lux": "20000Lux",
           "Status": "On"
         }
       ]
@@ -19,7 +19,7 @@
       "lightData": [
         {
           "Volts": "21.6V",
-          "light": "20000Lux",
+          "lux": "20000Lux",
           "Status": "On"
         }
       ]
@@ -31,7 +31,7 @@
       "lightData": [
         {
           "Volts": "21.6V",
-          "light": "20000Lux",
+          "lux": "20000Lux",
           "Status": "On"
         }
       ]
@@ -43,7 +43,7 @@
       "lightData": [
         {
           "Volts": "21.6V",
-          "light": "20000Lux",
+          "lux": "20000Lux",
           "Status": "On"
         }
       ]
@@ -55,7 +55,7 @@
       "lightData": [
         {
           "Volts": "21.6V",
-          "light": "20000Lux",
+          "lux": "20000Lux",
           "Status": "On"
         }
       ]
